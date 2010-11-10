@@ -1,0 +1,125 @@
+<!doctype html><html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>zGrid</title>
+	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<script type="text/javascript" src="lib/jquery-1.4.2.min.js"></script>    
+	<script type="text/javascript" src="lib/jquery.simplemodal.js"></script>
+	<script type="text/javascript" src="lib/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="lib/jquery.notifyBar.js"></script>
+	<script type="text/javascript" src="zgrid.js"></script>
+	<script type="text/javascript" src="example.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="http://zgrid.spav.com.pl" title="zGrid"><h1 class="title">zGrid</h1></a>
+		<blockquote>Simple Ajax Grid plugin for jQuery</blockquote>
+	</div>
+	<div id="pagewrap">
+		<div class="innerdiv clear">
+			<h2 class="head-alt-white">Let's begin with example</h2>
+			<div class="innercontent">
+				<table id="article-list" class="full"></table>
+			</div>
+		</div>
+		<div class="outerdiv">
+			<p>And that is basically all what zGrid can do at the moment :-)</p>
+			<h2>What is it?</h2>
+			<p>zGrid is as simple as possible jQuery plugin, converting your HTML table into dynamic fancy data grid. 
+			You can easly convert your actual table, or load data from external source by using simple JSON data format.</p>
+			<h3>Features</h3>
+			<ul>
+				<li>ajax remote data source in JSON format</li>
+				<li>sortable columns</li>
+				<li>pagination</li>
+				<li>bulk actions</li>
+				<li>add or remove rows at demand</li>
+				<li>easy integration</li>
+			</ul>
+			<h2>How to use it?</h2>
+			<p>Pure example <a href="example.html" title="Example">here</a>. More later.</p>
+			<h2>Download</h2>
+			<p>One and only version: <span class="shine">0.1beta</span><br/>
+				Download <a title="0.1beta Zip" href="download/zgrid_01beta.zip">zip</a> or <a title="0.1beta Tar" href="download/zgrid_01beta.tar.gz">tar</a> 
+			</p>
+			<h2>Licence</h2>
+			<p>You may use zGrid under the terms of either the <a href="http://en.wikipedia.org/wiki/MIT_License" title="MIT License">MIT License</a> 
+				or the <a href="http://en.wikipedia.org/wiki/GNU_General_Public_License" title="GPL License">GNU General Public License (GPL) Version 2.</a></p>
+		</div>
+	</div>
+	<div id="footer">
+		<p>&copy; 2010 <a href="mailto:patryk@spav.com.pl">Patryk Grandt</a></p>
+	</div>
+	
+	<!-- Alert Dialog -->
+	<div id="alert-modal" class="modal">
+		<h2 class="head-alt">Warning!</h2>
+		<div class="alert-content message"></div>
+		<br class="clear" />
+	</div>
+	<!-- Confirm Dialog -->
+	<div id="confirm-modal" class="modal">
+		<h2 class="head-alt">Are You Sure ?</h2>
+
+		<div class="message"></div>
+		<div class="buttons">
+			<div class="yes"><a class="button red">YES</a></div>
+			<div class="no simplemodal-close"><a class="button gray">NO</a></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	<!--
+		$('#article-list').zGrid({
+			url: 'server.php',
+			pageTotal: 5,
+			pageLimit: 8,
+			checkboxes: true,
+			controls: true,
+			paginator: true,
+			cols: [
+				{ label: 'User Name',	id: 'name',		type: 'head',	sortable: true, width: '20%' },
+				{ label: 'Status',		id: 'status',	type: 'img',	sortable: true, width: '10%' },
+				{ label: 'Url',			id: 'url',		type: 'url', width: '20%' },
+				{ label: 'Description',	id: 'desc', width: '40%' }
+			],
+			bulk: [
+				{ label: 'Disable user',	action: 'disable' },
+				{ label: 'Enable user',		action: 'enable' },
+				{ label: 'Delete user',		action: 'delete' }
+			],
+			onLoad: function() {
+				$('.delete-btn').click( function(e){
+					e.stopPropagation();
+					confirm( 'Do you want to delete this row?', function(row) {
+						$('#article-list').zGridDeleteRow( row.name );
+						showSuccess('Row "' + row.name + '" deleted');
+					}, this);
+					return false;
+				});
+				$('.edit-btn').click( function(e){
+					e.stopPropagation();
+					showSuccess('Edit Button')
+					return false;
+				});
+			},
+			onBulk: function( action, selected ){
+				switch(action) {
+					case 'delete':
+						confirm( 'Do you want to delete selected rows?', function(selected) {
+							selected.each(function(i, chk) {
+								$('#article-list').zGridDeleteRow( chk.value );
+								showSuccess('Row "' + chk.value + '" deleted');
+							});
+						}, selected);
+						break;
+					case 'enable': alert('Enable!');
+						break;
+					case 'disable': alert('Disable!');
+						break;
+				}
+			}
+		});
+	//-->
+	</script>
+</body>
+</html>
