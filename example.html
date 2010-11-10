@@ -1,0 +1,71 @@
+<!doctype html><html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>zGrid Example</title>
+	<link type="text/css" href="css/style.css" rel="stylesheet" />
+	<script type="text/javascript" src="lib/jquery-1.4.2.min.js"></script>    
+	<script type="text/javascript" src="zgrid.js"></script>
+</head>
+<body>
+	<h1>zGrid Example</h1>
+	<div id="pagewrap">
+		<div class="innerdiv clear">
+			<div class="innercontent">
+				<table id="article-list" class="full"></table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	<!--
+		$('#article-list').zGrid({
+			url: 'server.php',
+			pageTotal: 5,
+			pageLimit: 8,
+			checkboxes: true,
+			controls: true,
+			paginator: true,
+			cols: [
+				{ label: 'User Name',	id: 'name',		type: 'head',	sortable: true, width: '20%' },
+				{ label: 'Status',		id: 'status',	type: 'img',	sortable: true, width: '10%' },
+				{ label: 'Url',			id: 'url',		type: 'url', width: '20%' },
+				{ label: 'Description',	id: 'desc', width: '40%' }
+			],
+			bulk: [
+				{ label: 'Disable user',	action: 'disable' },
+				{ label: 'Enable user',		action: 'enable' },
+				{ label: 'Delete user',		action: 'delete' }
+			],
+			onLoad: function() {
+				$('.delete-btn').click( function(e){
+					if (confirm( 'Do you want to delete this row?')) {
+						$('#article-list').zGridDeleteRow( this.name );
+						alert('Row "' + this.name + '" deleted');
+					}
+					return false;
+				});
+				$('.edit-btn').click( function(e){
+					alert('Edit Button');
+					return false;
+				});
+			},
+			onBulk: function( action, selected ){
+				switch(action) {
+					case 'delete':
+						if (confirm('Do you want to delete selected rows?')) {
+							selected.each(function(i, chk) {
+								$('#article-list').zGridDeleteRow( chk.value );
+							});
+							showSuccess('Deleted "' + selected.length + '" rows');
+						}
+						break;
+					case 'enable': alert('Enable!');
+						break;
+					case 'disable': alert('Disable!');
+						break;
+				}
+			}
+		});
+	//-->
+	</script>
+</body>
+</html>

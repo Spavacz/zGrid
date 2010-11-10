@@ -265,6 +265,7 @@ div.pagination {
 	float: right;
 }
 .pagination a {
+	color: #369;
 	margin: 0 3px;
 	text-shadow: rgba(0, 0, 0, 0.246094);
 	text-decoration: none;
