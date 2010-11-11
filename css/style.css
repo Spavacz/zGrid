@@ -77,6 +77,12 @@ h1.title {
 	float: left;
 	text-indent: -5000px;
 }
+#likeit {
+	margin:5px;
+	position:absolute;
+	right:0;
+	top:0;
+}
 #header {
 	background-color: #222;
 	padding: 10px 20px;
@@ -359,7 +365,12 @@ div.pagination {
 }
 .shine{
 	color: white;
-	font-weight: bold;
+}
+.red{
+	color: red !important;
+}
+.bold{
+	font-weight: bold !important;
 }
 /* ============================================================================
 jquery 'noitfyBar' plugin style

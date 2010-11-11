@@ -21,6 +21,7 @@
 
 		// defaults
 		p = $.extend({
+			gridId: 0,
 			url: false, // rest url
 			autoload: true,
 			pageTotal: 1,
@@ -172,6 +173,7 @@
 				pagination.children('a[name]').click( function(e) {
 					g.loadPage( parseInt(e.currentTarget.name.substr(5)) );
 					g.refreshPagination();
+					return false;
 				});
 			},
 			// load specific page
@@ -328,7 +330,8 @@
 	 * p - options
 	 */ 
 	$.fn.zGrid = function(p) {
-		return this.each( function() {
+		return this.each( function(k) {
+			p.gridId = k;
 			if (!docloaded) {
 				$(this).hide();
 				var t = this;
@@ -346,7 +349,7 @@
 	 * id - row id
 	 */
 	$.fn.zGridDeleteRow = function( id ) { //function to update general options
-		return this.each( function() {
+		return this.each( function() {		
 			this.grid.deleteRow(id);
 		});
 

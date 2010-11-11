@@ -1,6 +1,14 @@
-<!doctype html><html>
+<!doctype html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta property="og:title" content="zGrid"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://zgrid.spav.com.pl/images/zgridfb.png"/>
+	<meta property="og:url" content="http://zgrid.spav.com.pl"/>
+	<meta property="og:site_name" content="zGrid"/>
+	<meta property="fb:admins" content="1095596396"/>
+	<meta property="og:description" content="Simple Ajax Grid plugin for jQuery"/>
 	<title>zGrid</title>
 	<link type="text/css" href="css/style.css" rel="stylesheet" />
 	<script type="text/javascript" src="lib/jquery-1.4.2.min.js"></script>    
@@ -9,12 +17,14 @@
 	<script type="text/javascript" src="lib/jquery.notifyBar.js"></script>
 	<script type="text/javascript" src="zgrid.js"></script>
 	<script type="text/javascript" src="example.js"></script>
+	<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 </head>
 <body>
 	<div id="header">
 		<a href="http://zgrid.spav.com.pl" title="zGrid"><h1 class="title">zGrid</h1></a>
 		<blockquote>Simple Ajax Grid plugin for jQuery</blockquote>
 	</div>
+	<div id="likeit"><fb:like width="350" action="recommend" colorscheme="dark"></fb:like></div>
 	<div id="pagewrap">
 		<div class="innerdiv clear">
 			<h2 class="head-alt-white">Let's begin with example</h2>
@@ -23,8 +33,8 @@
 			</div>
 		</div>
 		<div class="outerdiv">
-			<p>And that is basically all what zGrid can do at the moment :-)</p>
-			<h2>What is it?</h2>
+			<p>And that is basically all that zGrid can do at the moment :-)</p>
+			<h2>So what is it?</h2>
 			<p>zGrid is as simple as possible jQuery plugin, converting your HTML table into dynamic fancy data grid. 
 			You can easly convert your actual table, or load data from external source by using simple JSON data format.</p>
 			<h3>Features</h3>
@@ -37,12 +47,19 @@
 				<li>easy integration</li>
 			</ul>
 			<h2>How to use it?</h2>
-			<p>Pure example <a href="example.html" title="Example">here</a>. More later.</p>
+			<p>Check pure <a href="example.html" title="Example">example</a>. More comes later.</p>
 			<h2>Download</h2>
-			<p>One and only version: <span class="shine">0.1beta</span><br/>
-				Download <a title="0.1beta Zip" href="download/zgrid_01beta.zip">zip</a> or <a title="0.1beta Tar" href="download/zgrid_01beta.tar.gz">tar</a> 
+			<p>Version <span class="shine bold">0.1</span> <span class="red bold">alfa</span></p>
+			<p>
+				<a class="button" title="0.1beta zip" href="https://github.com/Spavacz/zGrid/zipball/v0.1">Download .zip</a>
+				<a class="button"title="0.1beta tar" href="https://github.com/Spavacz/zGrid/tarball/v0.1">Download .tar.gz</a> 
 			</p>
-			<h2>Licence</h2>
+			<p>Latest Git revision</p>
+			<p>
+				<a class="button" title="latest zip" href="https://github.com/Spavacz/zGrid/zipball/master">Download .zip</a>
+				<a class="button"title="latest tar" href="https://github.com/Spavacz/zGrid/tarball/master">Download .tar.gz</a> 
+			</p>
+			<h2>License</h2>
 			<p>You may use zGrid under the terms of either the <a href="http://en.wikipedia.org/wiki/MIT_License" title="MIT License">MIT License</a> 
 				or the <a href="http://en.wikipedia.org/wiki/GNU_General_Public_License" title="GPL License">GNU General Public License (GPL) Version 2.</a></p>
 		</div>
@@ -89,7 +106,6 @@
 			],
 			onLoad: function() {
 				$('.delete-btn').click( function(e){
-					e.stopPropagation();
 					confirm( 'Do you want to delete this row?', function(row) {
 						$('#article-list').zGridDeleteRow( row.name );
 						showSuccess('Row "' + row.name + '" deleted');
@@ -97,7 +113,6 @@
 					return false;
 				});
 				$('.edit-btn').click( function(e){
-					e.stopPropagation();
 					showSuccess('Edit Button')
 					return false;
 				});
